@@ -1,5 +1,6 @@
 package com.JavaProjects.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -37,16 +38,11 @@ public class User {
     @Column(name="created_at")
     private LocalDateTime createdAt;
 
-//    @PrePersist
-//    public void prePersist(){
-//        if(createdAt == null){
-//            createdAt = LocalDateTime.now();
-//            System.out.println("Created at timestamp set: " + createdAt);
-//        }
-//    }
+
 
     //orphanRemoval allows us to remove the recipe if it no longer has a parent User
     @OneToMany(mappedBy="user", cascade= CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Recipe> recipes = new ArrayList<>();
 
 

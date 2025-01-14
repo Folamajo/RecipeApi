@@ -1,78 +1,36 @@
-package com.JavaProjects.persistence.entities;
-
-import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
+package com.JavaProjects.api.dto;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table (name = "recipes")
-public class Recipe {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="recipe_id")
+public class RecipeDTO {
     private Long recipeId;
-
-//    @Column(name = "user_id")
-//    private Long userId;
-    //Many recipes can belong to one user
-    //user_id column corresponds to a User entity nullable means it has to be
-        // associated with a user and cannot be false
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @Column(name ="title", nullable=false)
     private String title;
-
-    @Column(name="description")
     private String description;
-
-    @Column (name = "cuisine_type")
     private String cuisineType;
-
-    @Column (name = "meal_type")
     private String mealType;
-
-    @Column (name = "dietary_restrictions")
     private String dietaryRestrictions;
-
-    @Column (name = "photo")
     private String photo;
-
-    @Column (name = "created_at")
+    private Long userId;
     private LocalDateTime createdAt;
 
-//    @PrePersist
-//    protected void onCreate(){
-//        this.createdAt = LocalDateTime.now();
-//    }
 
-    public Recipe() {
-    }
 
-    //CONSTRUCTOR
-    public Recipe(Long recipeId, User user, String title, String description, String cuisineType, String mealType, String dietaryRestrictions, String photo, LocalDateTime createdAt) {
+    public RecipeDTO(Long recipeId, String title, String description, String cuisineType,
+                     String mealType, String dietaryRestrictions, String photo, Long userId, LocalDateTime createdAt) {
         this.recipeId = recipeId;
-        this.user = user;
         this.title = title;
         this.description = description;
         this.cuisineType = cuisineType;
         this.mealType = mealType;
         this.dietaryRestrictions = dietaryRestrictions;
         this.photo = photo;
+        this.userId = userId;
         this.createdAt = createdAt;
     }
-
 
     //GETTERS
     public Long getRecipeId() {
         return recipeId;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public String getTitle() {
@@ -99,19 +57,16 @@ public class Recipe {
         return photo;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
     //SETTERS
-
-
     public void setRecipeId(Long recipeId) {
         this.recipeId = recipeId;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setTitle(String title) {
@@ -138,7 +93,12 @@ public class Recipe {
         this.photo = photo;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }
+
