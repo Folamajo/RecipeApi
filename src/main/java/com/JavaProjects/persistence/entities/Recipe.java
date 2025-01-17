@@ -1,7 +1,7 @@
 package com.JavaProjects.persistence.entities;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
+
 
 import java.time.LocalDateTime;
 
@@ -42,10 +42,7 @@ public class Recipe {
     @Column (name = "created_at")
     private LocalDateTime createdAt;
 
-//    @PrePersist
-//    protected void onCreate(){
-//        this.createdAt = LocalDateTime.now();
-//    }
+
 
     public Recipe() {
     }
