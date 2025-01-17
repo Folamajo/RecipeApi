@@ -14,8 +14,6 @@ public class Recipe {
     @Column(name="recipe_id")
     private Long recipeId;
 
-//    @Column(name = "user_id")
-//    private Long userId;
     //Many recipes can belong to one user
     //user_id column corresponds to a User entity nullable means it has to be
         // associated with a user and cannot be false
